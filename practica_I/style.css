@@ -13,13 +13,17 @@
     left: 575px;
 }
 
+#enemigos {
+    height: 800px;
+    width: 1200px;
+    position: absolute;
+}
+
 .enemigo {
     background-image: url('assets/enemigo.png');
     height: 50px;
     width: 50px;
-    position: absolute;
-    top: 100px;
-    left: 575px;
+    position: absolute; 
 }
 
 #misiles {
