@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Space Invaders</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <div id="fondo">
+            <div id="heroe"></div>
+            <div class="enemigo"></div>
+        </div>
+    
+    <script>
+
+        var heroe = {
+            top: 700,
+            left: 550
+        }
+
+        document.onkeydown = function(e) {
+            console.log(e)
+            if (e.keyCode == 37) {
+                console.log("IZQUIERDA")
+                heroe.left = heroe.left - 10;
+                moverHeroe()
+            }
+            else if (e.keyCode == 39) {
+                console.log("DERECHA")
+                heroe.left = heroe.left +10;
+                moverHeroe()
+            }
+        }
+
+        function moverHeroe() {
+            document.getElementById('heroe').style.left = heroe.left + "px";
+        }
+        dibujaHeroe()
+
+    </script>
+
+    </body>
+</html>
