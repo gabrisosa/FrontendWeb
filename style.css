@@ -10,7 +10,7 @@
     width: 50px;
     position: absolute;
     top: 700px;
-    left: 550px;
+    left: 575px;
 }
 
 .enemigo {
@@ -19,5 +19,18 @@
     width: 50px;
     position: absolute;
     top: 100px;
-    left: 550px;
+    left: 575px;
+}
+
+#misiles {
+    height: 800px;
+    width: 1200px;
+    position: absolute;
+}
+
+.misil {
+    background-image: url('assets/misil.png');
+    height: 38px;
+    width: 10px;
+    position: absolute;
 }
