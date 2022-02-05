@@ -1,35 +1,39 @@
 var heroe = {
-    top: 700,
-    left: 575
+    x: 575,
+    y: 700
 }
 
 var arrayMisiles = []
 
 var arrayEnemigos = [
-    { left: 200, top: 100 },
-    { left: 300, top: 100 },
-    { left: 400, top: 100 },
-    { left: 500, top: 100 },
-    { left: 600, top: 100 },
-    { left: 700, top: 100 },
-    { left: 800, top: 100 },
-    { left: 900, top: 100 }
+    { x: 200, y: 100 },
+    { x: 300, y: 100 },
+    { x: 400, y: 100 },
+    { x: 500, y: 100 },
+    { x: 600, y: 100 },
+    { x: 700, y: 100 },
+    { x: 800, y: 100 },
+    { x: 900, y: 100 }
 ]
 
 document.onkeydown = function(e) {
     switch(e.key){
         case "ArrowLeft":
-            heroe.left = heroe.left - 10;
-            moverHeroe()
+            if(heroe.x > 5) {
+                heroe.x = heroe.x - 10;
+                moverHeroe()
+            }
             break;
         case "ArrowRight":
-            heroe.left = heroe.left + 10;
-            moverHeroe()
+            if (heroe.x < 1145) {
+                heroe.x = heroe.x + 10;
+                moverHeroe()
+            }
             break;
         case " ":
             arrayMisiles.push({
-                left: heroe.left,
-                top: heroe.top
+                left: heroe.x,
+                top: heroe.y
             })
             dibujarMisiles()
             break;
@@ -37,7 +41,7 @@ document.onkeydown = function(e) {
 }
 
 function moverHeroe() {
-    document.getElementById('heroe').style.left = heroe.left + "px";
+    document.getElementById('heroe').style.left = heroe.x + "px";
 }
 
 function dibujarMisiles() {
@@ -62,15 +66,15 @@ function dibujarEnemigos() {
     for(var e = 0; e < arrayEnemigos.length; e++) {
         document.getElementById('enemigos').innerHTML += 
         `<div class='enemigo' style='
-            left: ${arrayEnemigos[e].left}px;
-            top:${arrayEnemigos[e].top}px'>
+            left: ${arrayEnemigos[e].x}px;
+            top:${arrayEnemigos[e].y}px'>
         </div>`
     }
 }
 
 function moverEnemigos() {
     for(var e = 0; e < arrayEnemigos.length; e++) {
-        arrayEnemigos[e].top = arrayEnemigos[e].top + 1;
+        arrayEnemigos[e].y = arrayEnemigos[e].y + 1;
     }
 }
 
@@ -78,10 +82,10 @@ function detectarColisiones() {
     for(var e = 0; e < arrayEnemigos.length; e++) {
         for(var m = 0; m < arrayMisiles.length; m++) {
             if(
-                (arrayMisiles[m].top <= arrayEnemigos[e].top + 50) &&
-                (arrayMisiles[m].top >= arrayEnemigos[e].top) &&
-                (arrayMisiles[m].left >= arrayEnemigos[e].left) &&
-                (arrayMisiles[m].left <= arrayEnemigos[e].left + 50)
+                (arrayMisiles[m].top <= arrayEnemigos[e].y + 50) &&
+                (arrayMisiles[m].top >= arrayEnemigos[e].y) &&
+                (arrayMisiles[m].left >= arrayEnemigos[e].x) &&
+                (arrayMisiles[m].left <= arrayEnemigos[e].x + 50)
             ) {
                 arrayEnemigos.splice(e, 1)
                 arrayMisiles.splice(m, 1)
@@ -91,7 +95,7 @@ function detectarColisiones() {
 }
 
 function gameLoop() {
-    setTimeout(gameLoop, 100)
+    setTimeout(gameLoop, 50)
     moverMisiles();
     dibujarMisiles();
     moverEnemigos();
