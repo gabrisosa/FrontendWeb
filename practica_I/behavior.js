@@ -3,6 +3,12 @@ var heroe = {
     y: 700
 }
 
+const estado = {
+    mover_izq : false,
+    mover_der : false,
+    disparar: false
+}
+
 var arrayMisiles = []
 
 var arrayEnemigos = [
@@ -16,31 +22,60 @@ var arrayEnemigos = [
     { x: 900, y: 100 }
 ]
 
-document.onkeydown = function(e) {
-    switch(e.key){
-        case "ArrowLeft":
-            if(heroe.x > 5) {
-                heroe.x = heroe.x - 10;
-                moverHeroe()
-            }
-            break;
-        case "ArrowRight":
-            if (heroe.x < 1145) {
-                heroe.x = heroe.x + 10;
-                moverHeroe()
-            }
-            break;
-        case " ":
-            arrayMisiles.push({
-                left: heroe.x,
-                top: heroe.y
-            })
-            dibujarMisiles()
-            break;
+function keyPress(event) {
+    if(event.key === "ArrowRight") {
+        estado.mover_der = true;
+    }
+
+    if(event.key === "ArrowLeft") {
+        estado.mover_izq = true;
+    }
+
+    if(event.key === " ") {
+        estado.disparar = true;
     }
 }
 
-function moverHeroe() {
+function keyRelease(event) {
+    if(event.key === "ArrowRight") {
+        estado.mover_der = false;
+    }
+
+    if(event.key === "ArrowLeft") {
+        estado.mover_izq = false;
+    }
+
+    if(event.key === " ") {
+        estado.disparar = false;
+    }
+}
+
+window.addEventListener("keydown", keyPress);
+window.addEventListener("keyup", keyRelease);
+
+function bound(x) {
+    if (heroe.x < 10) {
+        heroe.x = 10;
+        return heroe.x;  
+    } else if (heroe.x > 1140) {
+        heroe.x = 1140;
+        return heroe.x;
+    } else {
+        return heroe.x
+    }
+}
+
+function actualizarHeroe() {
+    if (estado.mover_izq){
+        heroe.x = bound(heroe.x) - 10;
+    } else if(estado.mover_der){
+        heroe.x = bound(heroe.x) + 10;
+    } if(estado.disparar) {
+        arrayMisiles.push({
+            left: heroe.x + 20,
+            top: heroe.y + 10
+        })
+    } 
     document.getElementById('heroe').style.left = heroe.x + "px";
 }
 
@@ -89,6 +124,8 @@ function detectarColisiones() {
             ) {
                 arrayEnemigos.splice(e, 1)
                 arrayMisiles.splice(m, 1)
+            } else if(arrayMisiles[m].top <= 0) {
+                arrayMisiles.splice(m, 1)
             }
         }
     }
@@ -96,6 +133,7 @@ function detectarColisiones() {
 
 function gameLoop() {
     setTimeout(gameLoop, 50)
+    actualizarHeroe();
     moverMisiles();
     dibujarMisiles();
     moverEnemigos();
