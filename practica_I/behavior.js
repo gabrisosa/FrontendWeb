@@ -3,6 +3,8 @@ const heroe = {
     y: 700
 }
 
+victoria = false
+
 const estado = {
     mover_izq : false,
     mover_der : false,
@@ -137,15 +139,22 @@ function detectarColisiones() {
             ) {
                 arrayEnemigos.splice(e, 1)
                 arrayMisiles.splice(m, 1)
-            } else if(arrayMisiles[m].top < 0) {
-                arrayMisiles.splice(m, 1)
+                if (arrayEnemigos.length == 0) {
+                    victoria = true;
+                }
             }
+        }
+    }
+
+    for (let i = 0; i < arrayMisiles.length; i++) {
+        if (arrayMisiles[i].top < 0) {
+            arrayMisiles.splice(i, 1);
         }
     }
 }
 
 function fin() {
-    if(arrayEnemigos.length === 0) {
+    if(victoria) {
         document.querySelector(".win").style.display = "block";
     } else {
         for(let i = 0; i < arrayEnemigos.length; i++) {
