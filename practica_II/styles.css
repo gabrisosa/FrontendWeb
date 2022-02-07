@@ -1,0 +1,14 @@
+#listado{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;;
+}
+
+.navigate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 2400px;
+}
