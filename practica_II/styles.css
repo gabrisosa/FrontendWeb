@@ -113,6 +113,8 @@ img {
 .navigate {
     display: flex;
     justify-content: center;
+    justify-content: space-evenly;
+    padding: 80px;
 }
 
 .prev {
