@@ -68,10 +68,10 @@ function GetCharacters() {
             <div id="characters">
                 {data && data.characters.results.map((elem) => {
                     return (
-                            <div className="character">
-                                <h2>{elem.name}</h2>
-                                <img src={elem.image} alt={elem.name}/>
-                            </div>
+                        <div className="character">
+                            <h2>{elem.name}</h2>
+                            <img src={elem.image} alt={elem.name} />
+                        </div>
                     )
                 })
                 }
