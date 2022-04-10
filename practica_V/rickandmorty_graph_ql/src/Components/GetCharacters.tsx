@@ -16,7 +16,7 @@ type ResultChar = {
     image: string
 }
 
-type ICharacter = {
+type Character = {
     characters: {
         results: Array<ResultChar>
     }
@@ -37,7 +37,7 @@ function GetCharacters() {
     }
 `
 
-    const {error, loading, data, refetch} = useQuery<ICharacter>(LOAD_CHARACTERS)
+    const {error, loading, data, refetch} = useQuery<Character>(LOAD_CHARACTERS);
 
     useEffect(() => {
         refetch();
@@ -56,7 +56,7 @@ function GetCharacters() {
     }
 
     if (error) {
-        console.log(`ERROR: ${error}`)
+        console.log(`ERROR: ${error}`);
     }
 
     if (loading) {
@@ -75,8 +75,6 @@ function GetCharacters() {
                     )
                 })
                 }
-            
-                
             </div>
             <div id="buttons">
                 <button onClick={(e) => prev()}>PREV</button>
