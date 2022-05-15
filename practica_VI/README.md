@@ -2,7 +2,7 @@
 
 Aplicación web full-stack que gestiona una agenda de contactos
 
-###### Para instalar las dependencias en los directorios api y front ejecutar:
+###### Para instalar las dependencias ejecutar en los directorios api y front:
 ```console
 npm install
 ```
