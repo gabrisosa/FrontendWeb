@@ -6,8 +6,8 @@ const heroe = {
 victoria = false
 
 const estado = {
-    mover_izq : false,
-    mover_der : false,
+    mover_izq: false,
+    mover_der: false,
     disparar: false,
     cooldown: 0
 }
@@ -34,29 +34,29 @@ const arrayEnemigos = [
 ]
 
 function keyPress(event) {
-    if(event.key === "ArrowRight") {
+    if (event.key === "ArrowRight") {
         estado.mover_der = true;
     }
 
-    if(event.key === "ArrowLeft") {
+    if (event.key === "ArrowLeft") {
         estado.mover_izq = true;
     }
 
-    if(event.key === " ") {
+    if (event.key === " ") {
         estado.disparar = true;
     }
 }
 
 function keyRelease(event) {
-    if(event.key === "ArrowRight") {
+    if (event.key === "ArrowRight") {
         estado.mover_der = false;
     }
 
-    if(event.key === "ArrowLeft") {
+    if (event.key === "ArrowLeft") {
         estado.mover_izq = false;
     }
 
-    if(event.key === " ") {
+    if (event.key === " ") {
         estado.disparar = false;
     }
 }
@@ -67,7 +67,7 @@ window.addEventListener("keyup", keyRelease);
 function bound(x) {
     if (heroe.x < 10) {
         heroe.x = 10;
-        return heroe.x;  
+        return heroe.x;
     } else if (heroe.x > 1140) {
         heroe.x = 1140;
         return heroe.x;
@@ -77,11 +77,11 @@ function bound(x) {
 }
 
 function actualizarHeroe() {
-    if (estado.mover_izq){
+    if (estado.mover_izq) {
         heroe.x = bound(heroe.x) - 10;
-    } else if(estado.mover_der){
+    } else if (estado.mover_der) {
         heroe.x = bound(heroe.x) + 10;
-    } if(estado.disparar && estado.cooldown === 0) {
+    } if (estado.disparar && estado.cooldown === 0) {
         arrayMisiles.push({
             left: heroe.x + 20,
             top: heroe.y + 10
@@ -89,16 +89,16 @@ function actualizarHeroe() {
         estado.cooldown = 10;
     }
     document.getElementById('heroe').style.left = heroe.x + "px";
-    if(estado.cooldown > 0) {
+    if (estado.cooldown > 0) {
         estado.cooldown -= 1;
     }
 }
 
 function dibujarMisiles() {
     document.getElementById('misiles').innerHTML = "";
-    for(let m = 0; m < arrayMisiles.length; m++) {
-        document.getElementById('misiles').innerHTML += 
-        `<div class='misil' style='
+    for (let m = 0; m < arrayMisiles.length; m++) {
+        document.getElementById('misiles').innerHTML +=
+            `<div class='misil' style='
             left: ${arrayMisiles[m].left}px;
             top:${arrayMisiles[m].top}px'>
         </div>`
@@ -106,16 +106,16 @@ function dibujarMisiles() {
 }
 
 function moverMisiles() {
-    for(let m = 0; m < arrayMisiles.length; m++) {
+    for (let m = 0; m < arrayMisiles.length; m++) {
         arrayMisiles[m].top = arrayMisiles[m].top - 10;
     }
 }
 
 function dibujarEnemigos() {
     document.getElementById('enemigos').innerHTML = ""
-    for(let e = 0; e < arrayEnemigos.length; e++) {
-        document.getElementById('enemigos').innerHTML += 
-        `<div class='enemigo' style='
+    for (let e = 0; e < arrayEnemigos.length; e++) {
+        document.getElementById('enemigos').innerHTML +=
+            `<div class='enemigo' style='
             left: ${arrayEnemigos[e].x}px;
             top:${arrayEnemigos[e].y}px'>
         </div>`
@@ -123,15 +123,15 @@ function dibujarEnemigos() {
 }
 
 function moverEnemigos() {
-    for(var e = 0; e < arrayEnemigos.length; e++) {
+    for (var e = 0; e < arrayEnemigos.length; e++) {
         arrayEnemigos[e].y = arrayEnemigos[e].y + 1.5;
     }
 }
 
 function detectarColisiones() {
-    for(let e = 0; e < arrayEnemigos.length; e++) {
-        for(let m = 0; m < arrayMisiles.length; m++) {
-            if(
+    for (let e = 0; e < arrayEnemigos.length; e++) {
+        for (let m = 0; m < arrayMisiles.length; m++) {
+            if (
                 (arrayMisiles[m].top <= arrayEnemigos[e].y + 50) &&
                 (arrayMisiles[m].top >= arrayEnemigos[e].y) &&
                 (arrayMisiles[m].left >= arrayEnemigos[e].x) &&
@@ -154,11 +154,11 @@ function detectarColisiones() {
 }
 
 function fin() {
-    if(victoria) {
+    if (victoria) {
         document.querySelector(".win").style.display = "block";
     } else {
-        for(let i = 0; i < arrayEnemigos.length; i++) {
-            if(arrayEnemigos[i].y >= 750) {
+        for (let i = 0; i < arrayEnemigos.length; i++) {
+            if (arrayEnemigos[i].y >= 750) {
                 document.querySelector(".lose").style.display = "block";
                 arrayEnemigos.length = 0;
                 arrayMisiles.length = 0;

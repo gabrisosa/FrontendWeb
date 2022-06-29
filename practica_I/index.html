@@ -1,27 +1,30 @@
 <html>
-    <head>
-        <title>Space Invaders</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
 
-        <div id="fondo">
-            <div id="heroe"></div>
-            <div id="misiles"></div>
-            <div id="enemigos"></div>
+<head>
+    <title>Space Invaders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-            <div class="win">
-                <h1>¡GANASTE!</h1>
-                <button class="btn" onclick="window.location.reload()">VOLVER A JUGAR</button>
-            </div>
+<body>
 
-            <div class="lose">
-                <h1>PERDISTE</h1>
-                <button class="btn" onclick="window.location.reload()">VOLVER A JUGAR</button>
-            </div>
+    <div id="fondo">
+        <div id="heroe"></div>
+        <div id="misiles"></div>
+        <div id="enemigos"></div>
+
+        <div class="win">
+            <h1>¡GANASTE!</h1>
+            <button class="btn" onclick="window.location.reload()">VOLVER A JUGAR</button>
         </div>
-    
-        <script src="behavior.js"></script>
 
-    </body>
+        <div class="lose">
+            <h1>PERDISTE</h1>
+            <button class="btn" onclick="window.location.reload()">VOLVER A JUGAR</button>
+        </div>
+    </div>
+
+    <script src="behavior.js"></script>
+
+</body>
+
 </html>
