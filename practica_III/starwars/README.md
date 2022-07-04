@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Práctica III
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). React App with [The Star Wars API](https://swapi.dev/)
 
 ## Available Scripts
 
